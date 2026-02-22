@@ -6,14 +6,15 @@
 # @Email: nguk0907@gmail.com
 # @Create At: 2026-02-20 14:21:29
 # @Last Modified By: nguyenkevin-dotcom
-# @Last Modified At: 2026-02-20 14:38:07
-# @Description: This is description.
+# @Last Modified At: 2026-02-22 20:09:24
+# @Description: Getting data from GitHub API and the save them in JSON file 
+# (if JSON file doesn't exist it will create one and
+# the name of the file is based on variable 'file')
 
 import urllib.request
 import os
 import stat
 import json
-
 
 class Datas:
     def __init__(self, file = "API_user_data.json"):
@@ -28,9 +29,6 @@ class Datas:
                 if response.status == 200:
                     raw_data = response.read().decode('UTF-8')
                     data = json.loads(raw_data)
-                    if not data:
-                        print("The username has no activity on github")
-                        return 
                     
                     # Check if file exists => change permission from read to write
                     if os.path.exists(self.file):
