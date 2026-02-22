@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 50.8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github_user_activity_package_nguyenkevin-dotcom"
+version = "0.0.1"
+requires-python = ">= 3.6"
+authors = [
+    { name = "Kevin Nguyen", email = "nguk0907@gmail.com" }
+]
+description = "Shows the activity of gitHub user"
+readme = "README.md"
+license = "MIT"
+keywords = ["GitHub", "github", "user activity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python"
+]
+
+[project.scripts]
+github-activity = "github_activity.__main__:main"
+
+[project.urls]
+Repository = "https://github.com/nguyenkevin-dotcom/Github_user_activity_roadmapSH#"
