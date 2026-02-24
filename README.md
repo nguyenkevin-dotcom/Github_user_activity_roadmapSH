@@ -23,6 +23,24 @@ Successfully installed github_user_activity_package_nguyenkevin-dotcom-0.0.1
 
 Then type on terminal type `github-activity <github-username>`
 
+Example output:
+
+```
+--------------------------------------------------------------------
+Recent activity on github.com from kamranahmedse:
+--------------------------------------------------------------------
+- Deleted tag 'v1.1.0' in kamranahmedse/mondex
+- Pushed 6 commits to kamranahmedse/claude-queue
+- Pushed 1 commit to kamranahmedse/claude-run
+- Pushed 1 commit to kamranahmedse/mondex
+- Released tag '1.1.0' in kamranahmedse/mondex
+- Starred av/remotion-bits
+- Starred brimdata/react-arborist
+- Starred jdecked/twemoji
+- Starred kamranahmedse/claude-queue
+- Starred kapishdima/soundcn
+```
+
 ## Resources
 
 - gemini.com
