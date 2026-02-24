@@ -55,8 +55,10 @@ class Datas:
                     os.chmod(self.file, stat.S_IREAD)
                 else:
                     print(f"Error!!: Status code {response.status}")
+                    return 0
         except Exception as e:
             print(f"An error occurred: {e}")
+            return 0
 
     def read_data(self):
         """

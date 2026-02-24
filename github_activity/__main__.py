@@ -30,10 +30,12 @@ def main():
     # it takes the argument, which is a username of the user in github.com
     data.get_url(args.username)
 
-    # Get data with urllib library. The output is data in JSON structure and at the same time 
+    # Get data with urllib library. If the return from fetch_data is 0. The whole process has ended.
+    # Else the output is data in JSON structure and at the same time 
     # it is being saved to the JSON file 
     # (if the name of JSON file is non-existent => it will create one)
-    data.fetch_data()
+    if data.fetch_data() == 0:
+        return 
     
     # Read the data from the JSON file
     informations = data.read_data()
@@ -65,6 +67,14 @@ def main():
                 repo_name.append(f"{type_event}:{event['payload']['issue']['title']}:{repo}")
             elif event["type"] == "ForkEvent":
                 repo_name.append(f"{type_event}:{event['payload']['forkee']['full_name']}:{repo}")
+            elif event["type"] == "IssuesEvent":
+                repo_name.append(f"{type_event}:{event['payload']['issue']['number']}:{repo}")
+            elif event["type"] == "PullRequestEvent":
+                repo_name.append(f"{type_event}:{event['payload']['pull_request']['number']}:{repo}")
+            elif event["type"] == "PullRequestReviewEvent":
+                repo_name.append(f"{type_event}:{event['payload']['pull_request']['number']}:{repo}")
+            elif event["type"] == "PullRequestReviewCommentEvent":
+                repo_name.append(f"{type_event}:{event['payload']['pull_request']['number']}:{repo}")
             else:
                 # other Events
                 repo_name.append(f"{type_event}:{repo}")
@@ -118,6 +128,14 @@ def main():
             elif "ForkEvent" in repo:
                 forked_name = "".join(f'\033[1;31m{repo[1][i]}\033[0m' if repo[1][i] in delimiters else f'\033[1m{repo[1][i]}\033[0m' for i in range(len(repo[1])))
                 print(f"\033[1;31m-\033[0m Forked {name} \033[31mto\033[0m {forked_name}")
-
+            elif "IssuesEvent" in repo:
+                print(f"\033[1;31m-\033[0m Created issue {repo[1]} \033[31min\033[0m {name}")
+            elif "PullRequestEvent" in repo:
+                print(f"\033[1;31m-\033[0m Created pull request {repo[1]} \033[31min\033[0m {name}")
+            elif "PullRequestReviewEvent" in repo:
+                print(f"\033[1;31m-\033[0m Reviewed pull request {repo[1]} \033[31min\033[0m {name}")
+            elif "PullRequestReviewCommentEvent" in repo:
+                print(f"\033[1;31m-\033[0m Commented on pull request {repo[1]} \033[31min\033[0m {name}")
+            
 if __name__ == "__main__":
     main()
